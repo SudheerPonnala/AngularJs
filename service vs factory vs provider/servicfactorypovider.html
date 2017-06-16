@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+  </head>
+<script>
+  angular.module('myApp',[]).
+  service('myservice',function(){
+    this.message = "i am from service";
+  }).
+  value("hi","i love you").
+  constant("myDetails",`{"name":"sudheer","surname":"ponnala","age":"29"}`).
+  factory('myfactory',function(){
+    var obj = {};
+    obj.message = "i am from factory";
+    return obj;
+  }).
+  provider('myprovider',function(){
+    var m1 = "i am from provider";
+    return {
+      setName:function(name){
+        m1 += " "+name;
+      },
+      $get: function(){
+        return {
+            message : m1
+        }
+      }
+    }
+  }).
+  config(function(myproviderProvider){
+      myproviderProvider.setName("sudheer");
+  })
+  .controller('myCtrl',function($scope, myservice, myfactory, myprovider, hi, myDetails){
+      $scope.name ="sudheer";
+      console.log(myservice,myfactory,myprovider, hi, myDetails);
+      hi = "i hate you ";   //We can able to modify the value
+      myDetails.name = "Dileep";   //We can able to modify the value
+      console.log(hi, myDetails);
+  });
+  
+</script>
+  <body  ng-controller="myCtrl">
+    <h1>{{name}}</h1>
+  </body>
+
+</html>
