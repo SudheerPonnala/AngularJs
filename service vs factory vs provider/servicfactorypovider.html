@@ -8,7 +8,7 @@
   service('myservice',function(){
     this.message = "i am from service";
   }).
-  value("hi","i love you").
+  value("hi","Hello").
   constant("myDetails",`{"name":"sudheer","surname":"ponnala","age":"29"}`).
   factory('myfactory',function(){
     var obj = {};
@@ -34,7 +34,7 @@
   .controller('myCtrl',function($scope, myservice, myfactory, myprovider, hi, myDetails){
       $scope.name ="sudheer";
       console.log(myservice,myfactory,myprovider, hi, myDetails);
-      hi = "i hate you ";   //We can able to modify the value
+      hi = "Bye";   //We can able to modify the value
       myDetails.name = "Dileep";   //We can able to modify the value
       console.log(hi, myDetails);
   });
